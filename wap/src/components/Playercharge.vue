@@ -1,8 +1,8 @@
 <template>
   <div>
-    <form-preview header-label="Player ID" header-value="244158" :body-items="list" :footer-buttons="buttons"></form-preview>
+    <form-preview header-label="playerID" header-value="244158" :body-items="list" :footer-buttons="buttons"></form-preview>
     <group>
-      <x-input title="Player ID" placeholder="Please input Player ID here" novalidate :show-clear="true"placeholder-align="right"></x-input>
+      <x-input v-model="searchID" title="Player ID" placeholder="Please input Player ID here" novalidate :show-clear="true"placeholder-align="right"></x-input>
     </group>
     <div style="padding:15px;">
       <x-button type="primary"> check</x-button>
@@ -22,6 +22,8 @@ export default {
   },
   data () {
     return {
+      searchID:'111',
+      playerID:'244158',
       list:[{
         label: 'Nickname',
         value: 'Jonathan'
@@ -40,3 +42,7 @@ export default {
   }
 }
 </script>
+<style lang='less'>
+@import '../common/less/variable.less';
+*{.fs(16)}
+</style>
