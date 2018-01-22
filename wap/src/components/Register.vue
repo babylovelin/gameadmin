@@ -4,13 +4,13 @@
       注册
     </div>
     <div class="username vux-1px-b">
-      <span><i class="fa fa-user " aria-hidden="true"></i></span> <input v-model="username" type="text" name="" value="" placeholder="请输入帐号">
+      <span><i class="fa fa-user " aria-hidden="true"></i></span> <input v-model="username" type="number" name="" value="" placeholder="请输入手机号">
     </div>
     <div class="password vux-1px-b">
-      <span><i class="fa fa-lock" aria-hidden="true"></i></span> <input v-model="password" type="password" name="" value=""placeholder="请输入密码">
+      <span><i class="fa fa-lock" aria-hidden="true"></i></span> <input v-model="password" type="password" name="" maxlength="18"  value=""placeholder="请输入密码(6-18位)">
     </div>
     <div class="password vux-1px-b">
-      <span><i class="fa fa-lock" aria-hidden="true"></i></span> <input v-model="repass" type="password" name="" value=""placeholder="请重复输入密码">
+      <span><i class="fa fa-lock" aria-hidden="true"></i></span> <input v-model="repass" type="password" name="" maxlength="18" value=""placeholder="请重复输入密码">
     </div>
     <div class="register-btn">
       <span @click="userRegist()">注册
@@ -45,9 +45,20 @@ export default {
       this.$router.push('/login')
     },
     userRegist:function(){
+      if(!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(this.username))){
+        this.show=true
+        this.message='请输入正确的手机号'
+        return false;
+      }
+
       if(this.password==''||this.username==''){
         this.show=true
         this.message='帐号/密码不能为空'
+        return
+      }
+      if (this.password.length < 6 || this.password > 18) {
+        this.show=true
+        this.message='密码长度为6-18位'
         return
       }
       if(this.password!=this.repass){
@@ -55,11 +66,12 @@ export default {
         this.message='两次密码不一致'
         return
       }
+
       var params = new URLSearchParams()
       params.append('username',this.username)
       params.append('password',md5(this.password))
       var that=this
-      this.$http.post('user/newUser',params)
+      this.$http.post('newUser',params)
 
       .then((res)=>{
 

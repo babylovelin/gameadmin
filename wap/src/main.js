@@ -6,13 +6,13 @@ import router from './router'
 import Axios from 'axios'
 import './fontawesome/css/font-awesome.min.css'
 import md5 from 'js-md5';
-Axios.defaults.baseURL = 'http://192.168.1.213:3000/api/'
+Axios.defaults.baseURL = 'http://dealer.870yx.com/api/'
 Axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 Vue.prototype.$http = Axios
 Vue.config.productionTip = false
 
-
-
+import GLOBAL from './common/js/global'
+Vue.prototype.global = GLOBAL
 
 /* eslint-disable no-new */
 new Vue({

@@ -8,8 +8,8 @@ module.exports = function() {
     在配置中引入mongoose的模型
   */
   require('../models/user.server.model.js');
-  // require('../models/search.server.model.js')
-  // require('../models/comment.server.model.js')
+  require('../models/chargeforproxy.server.model.js')
+  require('../models/chargeforplayer.server.model.js')
   // require('../models/bet.server.model.js')
   // require('../models/confirmOrder.server.model.js')
   return db

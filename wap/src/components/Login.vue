@@ -4,7 +4,7 @@
       登录
     </div>
     <div class="username vux-1px-b">
-      <span><i class="fa fa-user " aria-hidden="true"></i></span> <input type="text" name="" v-model='username' placeholder="请输入帐号">
+      <span><i class="fa fa-user " aria-hidden="true"></i></span> <input type="text" name="" v-model='username' placeholder="请输入手机号">
     </div>
     <div class="password vux-1px-b">
       <span><i class="fa fa-lock" aria-hidden="true"></i></span> <input type="password" name="" v-model='password' placeholder="请输入密码">
@@ -56,13 +56,13 @@ export default {
       params.append('username',this.username)
       params.append('password',md5(this.password))
       var that = this
-      this.$http.post('user/login',params)
+      this.$http.post('login',params)
       .then((res)=>{
         if(res.data.err==0){
           that.show=true
           that.message ="登录成功！"
-          document.cookie="username="+that.username
-          setTimeout(()=>{that.$router.push('/functions'),1500})
+          localStorage.username=that.username
+          that.$router.push('/')
 
         }
         if(res.data.err==-1){

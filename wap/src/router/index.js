@@ -8,17 +8,23 @@ import Playercharge from '@/components/Playercharge'
 import Chargeforcards from '@/components/Chargeforcards'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
+import Wxpayresult from '@/components/Wxpayresult'
+import Chargeforplayer from '@/components/Chargefroplayer'
+import Resetpassword from '@/components/Resetpassword'
+import Changepassword from '@/components/Changepassword'
+import Playerrecord from '@/components/PlayerRecord'
 
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [{
       path: '/',
       name: 'Main',
       component: Main,
       children: [{
-          path: '/functions',
+          path: '/',
           name: 'Functions',
           component: Functions
         }, {
@@ -35,6 +41,31 @@ export default new Router({
           path: '/chargeforcards',
           name: 'Chargeforcards',
           component: Chargeforcards
+        },
+        {
+          path: '/wxpayresult',
+          name: 'Wxpayresult',
+          component: Wxpayresult
+        },
+        {
+          path: '/chargeforplayer/:chargecardnum',
+          name: 'Chargeforplayer',
+          component: Chargeforplayer
+        },
+        {
+          path: '/resetpassword',
+          name: 'Resetpassword',
+          component: Resetpassword
+        },
+        {
+          path: '/changepassword',
+          name: 'Changepassword',
+          component: Changepassword
+        },
+        {
+          path: '/playerrecord',
+          name: 'Playerrecord',
+          component: Playerrecord
         }
       ]
     },
