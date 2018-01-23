@@ -4,16 +4,14 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 export default new Router({
-    routes: [
-        {
+    routes: [{
             path: '/',
             redirect: '/login'
         },
         {
             path: '/readme',
             component: resolve => require(['../components/common/Home.vue'], resolve),
-            children:[
-                {
+            children: [{
                     path: '/',
                     component: resolve => require(['../components/page/Readme.vue'], resolve)
                 },
@@ -22,8 +20,24 @@ export default new Router({
                     component: resolve => require(['../components/page/BaseTable.vue'], resolve)
                 },
                 {
+                    path: '/allproxy',
+                    component: resolve => require(['../components/page/Allproxy.vue'], resolve)
+                },
+                {
+                    path: '/allplayer',
+                    component: resolve => require(['../components/page/Allplayer.vue'], resolve)
+                },
+                {
+                    path: '/proxychargeforself',
+                    component: resolve => require(['../components/page/ProxyChargeForSelf.vue'], resolve)
+                },
+                {
+                    path: '/proxychargeforplayer',
+                    component: resolve => require(['../components/page/ProxyChargeForPlayer.vue'], resolve)
+                },
+                {
                     path: '/vuetable',
-                    component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
+                    component: resolve => require(['../components/page/VueTable.vue'], resolve) // vue-datasource组件
                 },
                 {
                     path: '/baseform',
@@ -31,23 +45,23 @@ export default new Router({
                 },
                 {
                     path: '/vueeditor',
-                    component: resolve => require(['../components/page/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
+                    component: resolve => require(['../components/page/VueEditor.vue'], resolve) // Vue-Quill-Editor组件
                 },
                 {
                     path: '/markdown',
-                    component: resolve => require(['../components/page/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
+                    component: resolve => require(['../components/page/Markdown.vue'], resolve) // Vue-Quill-Editor组件
                 },
                 {
                     path: '/upload',
-                    component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
+                    component: resolve => require(['../components/page/Upload.vue'], resolve) // Vue-Core-Image-Upload组件
                 },
                 {
                     path: '/basecharts',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-schart组件
+                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve) // vue-schart组件
                 },
                 {
                     path: '/drag',
-                    component: resolve => require(['../components/page/DragList.vue'], resolve)    // 拖拽列表组件
+                    component: resolve => require(['../components/page/DragList.vue'], resolve) // 拖拽列表组件
                 }
             ]
         },

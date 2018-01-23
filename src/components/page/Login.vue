@@ -12,13 +12,14 @@
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
                 </div>
-                <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码随便填。</p>
+                <!-- <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码随便填。</p> -->
             </el-form>
         </div>
     </div>
 </template>
 
 <script>
+    import md5 from 'js-md5';
     export default {
         data: function(){
             return {
@@ -42,12 +43,35 @@
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
                         localStorage.setItem('ms_username',self.ruleForm.username);
-                        self.$router.push('/readme');
+                        // self.$router.push('/readme');
                     } else {
-                        console.log('error submit!!');
+                        // console.log('error submit!!');
                         return false;
                     }
                 });
+                var params = new URLSearchParams()
+                params.append('username',this.ruleForm.username)
+                params.append('password',md5(this.ruleForm.password))
+                var that = this
+                this.$http.post('login',params)
+                .then(res=>{
+                  if(res.data.err==0){
+                    // that.$message('这是一条消息提示');
+                    that.$router.push('/allproxy');
+                  }
+                  if(res.data.err==-1){
+                    that.$message('用户名/密码错误');
+                  }
+                })
+            },
+            login() {
+              var params = new URLSearchParams()
+              params.append('username',this.ruleForm.username)
+              params.append('password',md5(this.ruleForm.password))
+              this.$http.post('login',params)
+              .then(res=>{
+                console.log(res);
+              })
             }
         }
     }
