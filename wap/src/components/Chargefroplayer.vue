@@ -39,11 +39,13 @@ export default {
       if (parseInt(this.cardnum)<=0) {
         this.show=true;
         this.message='请输入正确的房卡数'
+        this.try = !this.try
         return
       }
       if(this.cardnum ==''){
         this.show=true;
         this.message='请输入要充值的房卡数'
+        this.try = !this.try
         return
       }
       var params = new URLSearchParams()

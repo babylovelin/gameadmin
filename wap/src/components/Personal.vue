@@ -14,7 +14,7 @@
       </cell>
 
         <!-- <cell title="重置用户密码" is-link link="/resetpassword"></cell> -->
-        <cell title="充值记录"  is-link link="/"></cell>
+        <cell title="充值记录"  is-link link="/proxyrecord"></cell>
 
 
         <cell title="修改密码"  is-link link="/changepassword"></cell>

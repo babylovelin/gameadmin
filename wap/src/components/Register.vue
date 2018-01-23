@@ -56,7 +56,7 @@ export default {
         this.message='帐号/密码不能为空'
         return
       }
-      if (this.password.length < 6 || this.password > 18) {
+      if (this.password.length < 6 || this.password.length > 18) {
         this.show=true
         this.message='密码长度为6-18位'
         return

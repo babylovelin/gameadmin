@@ -78,7 +78,15 @@ router.post('/searchplayerrecord', function(req, res) {
 
 })
 
-
+//查询代理自己的充值记录
+router.post('/searchProxyChargeForSelfRecord', function(req, res) {
+  var proxyname = req.session.user.username
+  var num = req.body.num
+  db.getallproxychargeforselfbyname(proxyname, num)
+    .then(ret => {
+      res.send(ret)
+    })
+})
 
 //*****************************************************微信支付********************************
 //得到签名

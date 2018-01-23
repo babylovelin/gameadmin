@@ -24,9 +24,14 @@ app.all('*', function(req, res, next) {
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(cookieParser());
+app.use(cookieParser('session'));
 //session
 app.use(session({
+  // cookie: {
+  //   path: '/',
+  //   httpOnly: false,
+  //   maxAge: 24 * 60 * 60 * 1000
+  // },
   secret: 'session', //与cookieParser中的一致
   resave: true,
   saveUninitialized: true
@@ -48,9 +53,6 @@ var db = mongoose();
 // var mongoose = require('mongoose');
 var db = require("./public/js/db")
 
-//用户操作
-var user = require('./routes/user') //router
-app.use('/user', user)
 
 /*注册帐号*/
 app.post('/newUser', function(req, res, next) {
@@ -117,13 +119,15 @@ app.post('/logout', function(req, res) {
   })
 });
 
-// app.get('/test', function(req, res) {
-//   // res.send('<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>');
-//   res.send({
-//     err: 0,
-//     msg: '123'
-//   });
-// });
+//用户操作
+var user = require('./routes/user') //router
+app.use('/user', user)
+
+//超级管理
+var superadmin = require('./routes/super')
+app.use('/superadmin', superadmin)
+
+
 //告知微信，已经得知到帐
 app.post('/wxpayresult', function(req, res) {
   // console.log(req);

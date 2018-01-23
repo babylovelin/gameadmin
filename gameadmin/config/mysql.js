@@ -85,3 +85,35 @@ exports.chargeRoomcard = (userid, playerroomcardnum) => {
     });
   })
 }
+
+//查询所有玩家
+exports.getallplayer = () => {
+  return new Promise((resolve, reject) => {
+    var sql = 'SELECT * FROM t_users';
+    connection.query(sql, function(error, results, fields) {
+      // if (error) throw error;
+      if (error) {
+        return resolve({
+          err: -2,
+          msg: 'params err'
+        })
+      }
+      if (results == '') {
+        return resolve({
+          err: -1,
+          msg: 'get all player err'
+        });
+      } else {
+        return resolve({
+          err: 0,
+          res: results
+        })
+      }
+
+    })
+  })
+}
+
+
+
+//

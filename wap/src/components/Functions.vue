@@ -45,6 +45,12 @@ export default {
     GridItem,
     GroupTitle
   },
+  mounted:function(){
+    if(!localStorage.username){
+      this.$router.push('/login')
+      return
+    }
+  }
 }
 </script>
 

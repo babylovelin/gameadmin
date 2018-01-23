@@ -1,11 +1,11 @@
 <template lang="html">
   <div class="playerrecord">
     <div class="title">
-      <player-item :cellname='"代理手机号"' :celltime='"充值时间"' :cellval='"充值房卡数"'></player-item>
+      <proxy-item :cellcny='"充值人民币"' :celltime='"充值时间"' :cellval='"充值房卡数"'></proxy-item>
     </div>
     <div class="record">
       <divider>{{dividerData}}</divider>
-      <player-item v-for="item in recordData" :cellname='item.userid' :celltime='item.time' :cellval='item.roomcard'></player-item>
+      <proxy-item v-for="item in recordData" :cellcny='item.cny' :celltime='item.time' :cellval='item.roomcard'></proxy-item>
       <!-- <player-item v-for="item in recordData" :cellname='item.userid' :celltime='item.time' :cellval='item.roomcard'></player-item> -->
     </div>
   </div>
@@ -13,7 +13,7 @@
 
 <script>
 import { Divider } from 'vux'
-import PlayerItem from '../mycomponents/PlayerRecoedItem.vue'
+import ProxyItem from '../mycomponents/ProxyRecordItem.vue'
 export default {
   data(){
     return{
@@ -22,17 +22,19 @@ export default {
     }
   },
   components:{
-    PlayerItem,
+    ProxyItem,
     Divider
   },
   mounted:function(){
     var params = new URLSearchParams()
     params.append('num', 20)
-    this.$http.post('user/searchplayerrecord',params)
+    var that =this
+    this.$http.post('user/searchProxyChargeForSelfRecord',params)
     .then((ret)=>{
-      this.recordData = ret.data
+      that.recordData = ret.data
+      // console.log(ret);
       if (ret.data!='') {
-        this.dividerData="显示最新20条充值记录"
+        that.dividerData="显示最新20条充值记录"
       }
 
     })

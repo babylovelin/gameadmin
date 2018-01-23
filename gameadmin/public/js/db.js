@@ -16,6 +16,7 @@ exports.newUser = (username, password) => {
     var user = new User({
       username: username,
       password: password,
+      time: new Date().toLocaleString(),
       super: "0",
       roomcard: "0"
     })
@@ -319,7 +320,69 @@ exports.searchinplayerrecord = (proxyname, num) => {
     })
   })
 }
+
+//查询代理给自己的充值记录
+exports.getallproxychargeforselfbyname = (proxyname, num) => {
+  return new Promise((resolve, reject) => {
+    Chargeforproxy.find({
+      proxyname: proxyname
+    }).sort('-time').limit(num).exec((err, doc) => {
+      if (err) return reject(err)
+      return resolve(doc)
+    })
+  })
+}
+
 //console.log("searchinplayerrecord")
 //this.searchinplayerrecord(20).then(console.log).catch(console.log)
+
+
+//*****************************************SUPER admin  超级管理员
+
+
+//查询所有代理
+exports.getallproxy = () => {
+  return new Promise((resolve, reject) => {
+    User.find().sort('-time').exec((err, doc) => {
+      if (err) return reject(err)
+      return resolve(doc)
+    })
+  })
+}
+
+//删除代理
+exports.deleteproxy = (username) => {
+  return new Promise((resolve, reject) => {
+    User.remove({
+      username: username
+    }, (err, result) => {
+      if (err) return reject(err)
+      return resolve(result)
+    })
+  })
+}
+
+//查询代理给自己充值所有充值记录
+exports.getallproxychargeforself = () => {
+  return new Promise((resolve, reject) => {
+    Chargeforproxy.find().sort('-time').exec((err, doc) => {
+      if (err) return reject(err)
+      return resolve(doc)
+    })
+  })
+}
+
+
+//查询所有代理给玩家的充值记录
+
+exports.getallproxychargeforplayer = () => {
+  return new Promise((resolve, reject) => {
+    Chargeforplayer.find().sort('-time').exec((err, doc) => {
+      if (err) return reject(err)
+      return resolve(doc)
+    })
+  })
+}
+
 
 //

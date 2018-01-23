@@ -13,6 +13,7 @@ import Chargeforplayer from '@/components/Chargefroplayer'
 import Resetpassword from '@/components/Resetpassword'
 import Changepassword from '@/components/Changepassword'
 import Playerrecord from '@/components/PlayerRecord'
+import Proxyrecord from '@/components/Proxyrecord'
 
 
 Vue.use(Router)
@@ -66,6 +67,11 @@ export default new Router({
           path: '/playerrecord',
           name: 'Playerrecord',
           component: Playerrecord
+        },
+        {
+          path: '/proxyrecord',
+          name: 'proxyrecord',
+          component: Proxyrecord
         }
       ]
     },
